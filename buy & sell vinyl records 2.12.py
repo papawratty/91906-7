@@ -1,5 +1,4 @@
 from functools import partial
-import tkinter as tk 
 from tkinter import *
 import random
 
@@ -10,31 +9,70 @@ class buy:
         background_color = "#eda112"
 
         # converter Main Screen GUI...
-        self.buy_frame = Frame(width=1200, height=600, bg=background_color, borderwidth=5)
+        self.buy_frame = Frame(width=3600, bg=background_color) 
         self.buy_frame.grid()
 
-        
+
         # buy title (row 0)
         self.buy_label = Label(self.buy_frame, text="Buy page",
                                font=("Arial", "16", "bold"),
                                bg=background_color,
                                padx=10, pady=5)
-        self.buy_label.grid(row=0)
+        self.buy_label.grid(row=0, column=0)
 
         # buy heading (label, row 1)
         self.buy_heading = Label(self.buy_frame, text="Buy heading goes here",
                                font=("Arial", "12"),
                                bg=background_color,
                                padx=10, pady=5)
-        self.buy_heading.grid(row=1)
+        self.buy_heading.grid(row=1, column=0)
+
+        # buy heading (label, row 2)
+        self.buy_text = Label(self.buy_frame, text="this is where you buy vinyls",
+                               font="Arial 9 italic", wrap=250, justify=LEFT,
+                               bg=background_color,
+                               padx=10, pady=10)
+        self.buy_text.grid(row=2, column=0)
         
-       
-                            
-        # help Button (row 3)
+
+        
+        #entry for amount of vinyls the user wants to buy
+        self.e = Entry(self.buy_frame, width=25)
+        self.e.insert(0,"")
+        self.e.grid(row=4, column=1)
+
+        self.myButton = Button(self.buy_frame, text="Enter", font=("Arial", "14"),
+                                  padx=10, pady=10, command=self.help)
+        self.myButton.grid(row=5, column=1)
+
+        
+        # dropdown menu
+        def dropdown():
+            def show(self):
+                self.buy_dropdown = Label(self.buy_frame, text=self.clicked.get())
+                self.buy_dropdown.grid(row=3, column=1)
+
+            self.options = ["Igor - Tyler The Creator"
+                 "Good Kid Maad City - Kendrick Lamar"
+                 "Demon Days - Gorillaz"
+            ]
+
+            self.clicked = StringVar()
+            self.clicked.set("")
+
+            self.drop = OptionMenu(self.buy_frame, self.clicked, *self.options)
+
+            self.dropButton = Button(self.buy_frame, text="Show Selection", command=show)
+            self.buy_dropdown.grid(row=3, column=1)
+            
+        
+
+
+        # help Button (row 2)
         self.help_button = Button(self.buy_frame, text="help",
                                   font=("Arial", "14"),
                                   padx=10, pady=10, command=self.help)
-        self.help_button.grid(row=3)
+        self.help_button.grid(row=6)
 
 
     def help(self):
@@ -89,5 +127,5 @@ class help:
 if __name__ == "__main__":
     root = Tk()
     root.title("Buy & Sell Vinyl Records")
-    something = buy(root)
+    root = buy(root)
     root.mainloop()

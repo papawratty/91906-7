@@ -1,47 +1,53 @@
 from functools import partial
-import tkinter as tk 
 from tkinter import *
 import random
 
-class buy:
-    def __init__(self, parent):
+stock_list = ["Igor - Tyler The Creator"
+         "Good Kid Maad City - Kendrick Lamar"
+         "Demon Days - Gorillaz"]
+class stock:
+    def __init__(self, name, amount):
+        self.name = name
+        self.amount
+        stock_list.append(self)
 
-        #formatting variables....
-        background_color = "#eda112"
+#formatting variables....
+background_color = "orange"
 
-        # converter Main Screen GUI...
-        self.buy_frame = Frame(width=1200, height=600, bg=background_color, borderwidth=5)
-        self.buy_frame.grid()
+# converter Main Screen GUI...
+buy_frame = Frame(width=3600, bg=background_color) 
+buy_frame.grid()
 
-        
-        # buy title (row 0)
-        self.buy_label = Label(self.buy_frame, text="Buy page",
-                               font=("Arial", "16", "bold"),
-                               bg=background_color,
-                               padx=10, pady=5)
-        self.buy_label.grid(row=0)
+    
+# buy title (row 0)
+buy_label = Label(buy_frame, text="Buy page",
+                       font=("Arial", "16", "bold"),
+                       bg=background_color,
+                       padx=10, pady=5)
+buy_label.grid(row=0, column=0)
 
-        # buy heading (label, row 1)
-        self.buy_heading = Label(self.buy_frame, text="Buy heading goes here",
-                               font=("Arial", "12"),
-                               bg=background_color,
-                               padx=10, pady=5)
-        self.buy_heading.grid(row=1)
-        
-       
-                            
-        # help Button (row 3)
-        self.help_button = Button(self.buy_frame, text="help",
-                                  font=("Arial", "14"),
-                                  padx=10, pady=10, command=self.help)
-        self.help_button.grid(row=3)
+# buy heading (label, row 1)
+buy_heading = Label(buy_frame, text="Buy heading goes here",
+                       font=("Arial", "12"),
+                       bg=background_color,
+                       padx=10, pady=5)
+buy_heading.grid(row=1, column=0)
+
+# buy heading (label, row 2)
+buy_text = Label(buy_frame, text="this is where you buy vinyls",
+                       font="Arial 9 italic", wrap=250, justify=LEFT,
+                       bg=background_color,
+                       padx=10, pady=10)
+buy_text.grid(row=2, column=0)
 
 
-    def help(self):
+
+def help(self):
         print("going to help page")
         get_help = help(self)
         get_help.help_text.configure(text="help text goes here")
-        
+
+
 class help:
     def __init__(self, partner):
         
@@ -80,14 +86,10 @@ class help:
         #put help button back to noraml...
         partner.help_button.config(state=NORMAL)
         self.help_box.destroy()
-
         
-
-        
-
 #main routine
 if __name__ == "__main__":
     root = Tk()
     root.title("Buy & Sell Vinyl Records")
-    something = buy(root)
+    root = buy()
     root.mainloop()
