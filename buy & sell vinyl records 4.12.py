@@ -18,11 +18,10 @@ def buy_stock():
       if mode == "sell":
         blonde += amount.get()
       else:
-        if blonde > 0 :
-          blonde -= amount.get()
-          return True 
+        if blonde > 1:
+          blonde -= amount.get() 
         else:
-          return False
+          print("nah")
     
   elif vinyl == "nectar":
       if mode == "sell":
@@ -41,6 +40,7 @@ def buy_stock():
   vinyl_details.set(vinyl_string)
   amount.set("")
 
+  
 
 ##########################################buy frame######################################################
 #buy/sell frame 

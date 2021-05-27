@@ -8,6 +8,12 @@ blonde = 3
 nectar = 6
 flower_boy = 12
 
+sold_blonde = 0
+sold_nectar = 0
+sold_flower_boy = 0
+
+
+
 ##########################################calution######################################################
 def buy_stock():
   global blonde, nectar, flower_boy
@@ -18,32 +24,39 @@ def buy_stock():
       if mode == "sell":
         blonde += amount.get()
       else:
-        if blonde > 0 :
+        if blonde > 1:
           blonde -= amount.get()
-          return True 
+          sold_blonde += amount.get()
         else:
-          return False
+          print("nah")
     
   elif vinyl == "nectar":
       if mode == "sell":
         nectar += amount.get()
       else:
           nectar -= amount.get()
+          sold_nectar += amount.get()
 
   elif vinyl == "flower boy":
       if mode == "sell":
         flower_boy += amount.get()
       else:
           flower_boy -= amount.get()
+          sold_flower_boy += amount.get()
 
   
   vinyl_string = "Blonde:{}\nNectar:{}\nFlower boy:{}".format(blonde, nectar, flower_boy)
+  sold_vinyl_string = "Blonde:{}\nNectar:{}\nFlower boy:{}".format(sold_blonde, sold_nectar,
+                                                                   sold_flower_boy)
   vinyl_details.set(vinyl_string)
+  sold_vinyl_details.set(sold_vinyl_string)
+  
   amount.set("")
 
+  
 
 ##########################################buy frame######################################################
-#buy/sell frame 
+# buy/sell frame 
 buy_frame = ttk.LabelFrame(root, width=360, height=180, text="Buy & Sell")
 buy_frame.grid(row = 0, column = 1)
 
@@ -90,8 +103,8 @@ amount_entry.grid(row=4, column=1, padx=10, pady=3, sticky="WE")
 # Create a submit button
 submit_button = ttk.Button(buy_frame, text="Submit", command=buy_stock)
 submit_button.grid(row=5, column=0, columnspan=2, padx=10, pady=10)
-##########################################sell frame###################################################### 
-#stock frame
+##########################################stock frame###################################################### 
+# stock frame
 stock_frame = ttk.LabelFrame(root, width=360, height=180, text="Stock")
 stock_frame.grid(row = 0, column = 0, sticky="NSWE", padx=10, pady=10)
 
@@ -101,7 +114,20 @@ vinyl_details.set("Blonde: 3 \nNectar: 6\nFlower boy: 12")
 
 # Create the details label and pack it into the GUI
 vinyl_label = Label(stock_frame, textvariable=vinyl_details)
-vinyl_label.grid(row=2, column=0, columnspan=2, padx=10, pady=10)
+vinyl_label.grid(row=3, column=0, columnspan=2, padx=10, pady=5)
+##########################################sold stock frame###################################################### 
+# sold stock frame
+sold_stock_frame = ttk.LabelFrame(root, width=360, height=180, text="Sold Stock")
+sold_stock_frame.grid(row = 0, column = 3, sticky="NSWE", padx=10, pady=5)
+
+# Create and set the account details variable
+sold_vinyl_details = StringVar()
+sold_vinyl_details.set("Blonde: 0 \nNectar: 0\nFlower boy: 0")
+
+# Create the details label and pack it into the GUI
+sold_vinyl_label = Label(sold_stock_frame, textvariable=sold_vinyl_details)
+sold_vinyl_label.grid(row=2, column=0, columnspan=2, padx=10, pady=10)
+
 
 
 
