@@ -7,7 +7,7 @@ import random
 ##################  CLASS CODE  ######################
 # Create the item class
 class item:
-  """The item class stores the details of each item and has methods to restock, buy and calculate progress towards the super_dude sold"""
+  """The item class stores the details of each item and has methods to restock, buy and calculate progress towards the comics sold"""
   def __init__(self, name, amount, sold):
     self.name = name
     self.amount = amount
